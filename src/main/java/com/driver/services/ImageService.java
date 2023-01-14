@@ -31,13 +31,14 @@ public class ImageService {
     public int countImagesInScreen(Image image, String screenDimensions) {
         //Find the number of images of given dimensions that can fit in a screen having `screenDimensions`
         //In case the image is null, return 0
-
-        if(image==null) return 0;
+        String[] arr = screenDimensions.split("X");
+        if(image==null || arr.length!=2 ) return 0;
         String dimension = image.getDimensions();
-        String[] arr = dimension.split("X");
-        int imagedim = Integer.valueOf(arr[0])*Integer.valueOf(arr[1]);
-        arr = screenDimensions.split("X");
-        int screendim = Integer.valueOf(arr[0])*Integer.valueOf(arr[1]);
-        return (screendim/imagedim);
+        String[] arr1 = dimension.split("X");
+        int imagedim = Integer.valueOf(arr[0])/Integer.valueOf(arr1[0]);
+        int screendim = Integer.valueOf(arr[1])/Integer.valueOf(arr1[1]);
+
+
+        return (screendim*imagedim);
     }
 }
