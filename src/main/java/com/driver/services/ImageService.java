@@ -1,4 +1,4 @@
-package com.driver.services;
+    package com.driver.services;
 
 import com.driver.models.*;
 import com.driver.repositories.ImageRepository;
@@ -35,9 +35,9 @@ public class ImageService {
         if(image==null) return 0;
         String dimension = image.getDimensions();
         String[] arr = dimension.split("X");
-        long imagedim = Integer.valueOf(arr[0])*Integer.valueOf(arr[1]);
+        int imagedim = Integer.valueOf(arr[0])*Integer.valueOf(arr[1]);
         arr = screenDimensions.split("X");
-        long screendim = Integer.valueOf(arr[0])*Integer.valueOf(arr[1]);
-        return (int)(screendim/imagedim);
+        int screendim = Integer.valueOf(arr[0])*Integer.valueOf(arr[1]);
+        return (screendim/imagedim);
     }
 }
