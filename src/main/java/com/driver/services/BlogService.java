@@ -38,6 +38,9 @@ public class BlogService {
 
         Blog blog = new Blog(title,content,new Date(),userRepository1.findById(userId).get());
 blogRepository1.save(blog);
+List<Blog> blogList = userRepository1.findById(userId).get().getBlogList();
+blogList.add(blog);
+userRepository1.findById(userId).get().setBlogList(blogList);
         //updating the blog details
 
         //Updating the userInformation and changing its blogs
@@ -52,6 +55,7 @@ blogRepository1.save(blog);
     public void addImage(Integer blogId, String description, String dimensions){
         //add an image to the blog after creating it
         Image image = new Image(description,dimensions);
+        image.setBlog(blogRepository1.getOne(blogId));
         List<Image> list = blogRepository1.getOne(blogId).getImageList();
         list.add(image);
         blogRepository1.getOne(blogId).setImageList(list);
